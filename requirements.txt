@@ -1,6 +1,6 @@
 # Start of Selection
 # Start Generation Here
-streamlit
+streamlit==1.22.0
 google-generativeai
 PyPDF2
 pandas

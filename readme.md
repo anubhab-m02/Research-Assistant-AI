@@ -54,46 +54,18 @@ This application is a Research Assistant AI built using Streamlit. It allows use
 ## Code Structure
 
 - **app.py**: Main entry point of the application. Configures the Streamlit page and handles the main logic.
-  ```python:app.py
-  startLine: 1
-  endLine: 60
-  ```
 
 - **ui_layout.py**: Contains functions to render the sidebar and main content layout.
-  ```python:ui_layout.py
-  startLine: 1
-  endLine: 283
-  ```
 
 - **analysis.py**: Functions for analyzing research papers, comparing papers, and summarizing content.
-  ```python:analysis.py
-  startLine: 1
-  endLine: 114
-  ```
 
 - **pdf_utils.py**: Utility functions for extracting text from PDF files.
-  ```python:pdf_utils.py
-  startLine: 1
-  endLine: 19
-  ```
 
 - **citation.py**: Functions for extracting and formatting citations.
-  ```python:citation.py
-  startLine: 1
-  endLine: 22
-  ```
 
 - **semantic_search.py**: Functions for performing semantic searches and highlighting text.
-  ```python:semantic_search.py
-  startLine: 1
-  endLine: 29
-  ```
 
 - **reference_management.py**: Functions for managing references using Zotero.
-  ```python:reference_management.py
-  startLine: 1
-  endLine: 20
-  ```
 
 ## Potential Vulnerabilities
 
