@@ -1,11 +1,6 @@
-# Start of Selection
-# Start Generation Here
-streamlit==1.22.0
+streamlit
 google-generativeai
 PyPDF2
 pandas
 scikit-learn
 pyzotero
-# End Generation Here
-# Additional dependencies for future enhancements
-# End of Selection
