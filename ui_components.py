@@ -1,7 +1,6 @@
 import streamlit as st
 from typing import Tuple, List, Dict, Any
 from citation import extract_citations, format_citation
-from visualization import create_chart
 from analysis import compare_papers
 
 def render_analysis_options() -> Tuple[str, List[str]]:
@@ -16,36 +15,42 @@ def render_analysis_options() -> Tuple[str, List[str]]:
         )
     return output_format, focus_areas
 
-def render_analysis_results(analysis_results: List[Dict[str, Any]], chat_session):
-    st.subheader("Analysis Results:")
-    for result in analysis_results:
-        with st.expander(f"Analysis of {result['name']}"):
-            st.write(result['analysis'])
+def render_analysis_results(analysis_results, chat_session):
+    for i, result in enumerate(analysis_results):
+        st.subheader(f"Analysis of {result['name']}")
+        st.markdown(result['analysis'])
+        
+        # Extract and display citations
+        citations = extract_citations(result['content'])
+        if citations:
+            citation_style = st.selectbox(
+                "Select citation style:", 
+                ("APA", "MLA", "Chicago"), 
+                key=f"citation_style_{i}"
+            )
+            formatted_citations = [format_citation(c, citation_style) for c in citations]
+            st.subheader("Citations")
+            for fc in formatted_citations:
+                st.write(fc)
+        
+        st.markdown("---")  # Add a separator between paper analyses
 
-            # Citation extraction and formatting
-            citations = extract_citations(result['content'])
-            if citations:
-                st.subheader("Extracted Citations:")
-                citation_style = st.selectbox("Select citation style:", ("APA", "MLA", "Chicago"))
-                formatted_citations = [format_citation(c, citation_style) for c in citations]
-                for fc in formatted_citations:
-                    st.write(fc)
-
-    # Comparative analysis for multiple papers
-    if len(analysis_results) > 1:
+    # Comparative analysis
+    if len(analysis_results) >= 2:
         st.subheader("Comparative Analysis")
         comparative_analysis = compare_papers(chat_session, analysis_results)
-        st.write(comparative_analysis)
-
-    # Data visualization
-    st.subheader("Data Visualization")
-    chart_type = st.selectbox("Select chart type:", ("Bar", "Pie", "Histogram"))
-    data_to_visualize = st.text_input("Enter comma-separated values to visualize:")
-    if data_to_visualize:
-        try:
-            data = [float(x.strip()) for x in data_to_visualize.split(',')]
-            fig = create_chart(data, chart_type)
-            if fig:
-                st.pyplot(fig)
-        except ValueError:
-            st.warning("Invalid data format. Please enter numeric values separated by commas.")
+        
+        if isinstance(comparative_analysis, str):
+            st.write(comparative_analysis)
+        else:
+            st.markdown("### Overview")
+            st.write(comparative_analysis["overview"])
+            
+            st.markdown("### Key Similarities")
+            st.write(comparative_analysis["similarities"])
+            
+            st.markdown("### Notable Differences")
+            st.write(comparative_analysis["differences"])
+            
+            st.markdown("### Potential Areas for Future Research")
+            st.write(comparative_analysis["future_research"])

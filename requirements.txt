@@ -4,9 +4,8 @@ streamlit
 google-generativeai
 PyPDF2
 pandas
-matplotlib
-seaborn
-pybtex
+scikit-learn
+pyzotero
 # End Generation Here
 # Additional dependencies for future enhancements
 # End of Selection

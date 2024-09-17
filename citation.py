@@ -1,20 +1,21 @@
-import re
 from typing import List
+import re
 
-def extract_citations(text: str) -> List[str]:
+def extract_citations(text: str) -> List[dict]:
     # Simple regex-based citation extraction
-    # This pattern looks for parentheses containing a year
     citations = re.findall(r'\((?:[^()]*\d{4}[^()]*)\)', text)
-    return citations
+    
+    # Convert extracted citations to a list of dictionaries
+    return [{"raw": citation} for citation in citations]
 
-def format_citation(citation: str, style: str = 'APA') -> str:
-    # Simple formatting function
-    # Note: This is a basic implementation and doesn't follow strict citation rules
-    if style == 'APA':
-        return f"APA style: {citation}"
-    elif style == 'MLA':
-        return f"MLA style: {citation}"
-    elif style == 'Chicago':
-        return f"Chicago style: {citation}"
+def format_citation(citation: dict, style: str = 'apa') -> str:
+    raw_citation = citation.get("raw", "")
+    
+    if style.lower() == 'apa':
+        return f"APA Style: {raw_citation}"
+    elif style.lower() == 'mla':
+        return f"MLA Style: {raw_citation}"
+    elif style.lower() == 'chicago':
+        return f"Chicago Style: {raw_citation}"
     else:
-        return citation
+        return f"Unknown Style: {raw_citation}"
