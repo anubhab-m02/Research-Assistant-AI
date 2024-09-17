@@ -1,8 +1,8 @@
-# Research Paper Analysis Assistant
+# Research Assistant AI
 
 ## Overview
 
-This application is a Research Paper Analysis Assistant built using Streamlit. It allows users to upload research papers in PDF format or paste their content, and then perform various analyses such as extracting citations, performing semantic searches, asking questions, and summarizing the papers. The application leverages Google Generative AI for natural language processing tasks.
+This application is a Research Assistant AI built using Streamlit. It allows users to upload research papers in PDF format or paste their content, and then perform various analyses such as extracting citations, performing semantic searches, asking questions, and summarizing the papers. The application leverages Google Generative AI for natural language processing tasks.
 
 ## Features
 
